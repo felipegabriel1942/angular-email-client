@@ -1,0 +1,35 @@
+<h3>Crie uma conta</h3>
+<form class="ui form" [formGroup]="authForm">
+  <app-input
+    label="Usuário"
+    [control]="authForm.get('username')"
+    inputType="text"
+  ></app-input>
+
+  <app-input
+    label="Senha"
+    [control]="authForm.get('password')"
+    inputType="password"
+  ></app-input>
+
+  <app-input
+    label="Confirmar Senha"
+    [control]="authForm.get('passwordConfirmation')"
+    inputType="password"
+  ></app-input>
+
+  <div
+    *ngIf="
+      authForm.get('password').touched &&
+      authForm.get('passwordConfirmation').touched &&
+      authForm.errors
+    "
+    class="ui red basic label"
+  >
+    <p *ngIf="authForm?.errors?.passwordsDontMatch">
+      Senha deve ser igual a confirmação de senha.
+    </p>
+  </div>
+
+  <div><button class="ui submit button primary">Enviar</button></div>
+</form>
